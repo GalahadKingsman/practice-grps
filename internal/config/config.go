@@ -17,6 +17,10 @@ type Config struct {
 	// Добавьте другие настройки по мере необходимости
 }
 
+type Configs struct {
+	GRPCPort int `env:"GRPC_PORT" envDefault:"9000"`
+}
+
 var (
 	once     sync.Once
 	instance *Config

@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/lib/pq"
-	"messenger_user/config"
-	"messenger_user/models"
+	"messenger_user/internal/config"
+	"messenger_user/internal/models"
 )
 
 var DB *sql.DB

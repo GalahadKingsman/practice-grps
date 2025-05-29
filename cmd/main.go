@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	"messenger_user/database"
+	"messenger_user/internal/database"
 	"net/http"
 )
 
