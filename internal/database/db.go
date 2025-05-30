@@ -3,9 +3,9 @@ package database
 import (
 	"database/sql"
 	"fmt"
+	"github.com/GalahadKingsman/messenger_users/internal/config"
+	"github.com/GalahadKingsman/messenger_users/internal/models"
 	_ "github.com/lib/pq"
-	"messenger_user/internal/config"
-	"messenger_user/internal/models"
 )
 
 var DB *sql.DB
@@ -32,6 +32,7 @@ func createTables() error {
 	_, err := DB.Exec(`
         CREATE TABLE IF NOT EXISTS users (
             id SERIAL PRIMARY KEY,
+            login TEXT NOT NULL,
             first_name TEXT NOT NULL,
             last_name TEXT NOT NULL,
             email varchar(255) NOT NULL CHECK (email ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$'),

@@ -23,10 +23,11 @@ const (
 
 type CreateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FirstName     string                 `protobuf:"bytes,1,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	LastName      string                 `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
-	Phone         string                 `protobuf:"bytes,4,opt,name=phone,proto3" json:"phone,omitempty"`
+	Login         string                 `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
+	FirstName     string                 `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName      string                 `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	Email         string                 `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	Phone         string                 `protobuf:"bytes,5,opt,name=phone,proto3" json:"phone,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -59,6 +60,13 @@ func (x *CreateRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use CreateRequest.ProtoReflect.Descriptor instead.
 func (*CreateRequest) Descriptor() ([]byte, []int) {
 	return file_api_messenger_user_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *CreateRequest) GetLogin() string {
+	if x != nil {
+		return x.Login
+	}
+	return ""
 }
 
 func (x *CreateRequest) GetFirstName() string {
@@ -136,10 +144,11 @@ func (x *CreateResponse) GetSuccess() string {
 type GetUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            *int64                 `protobuf:"varint,1,opt,name=id,proto3,oneof" json:"id,omitempty"`
-	FirstName     *string                `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty"`
-	LastName      *string                `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
-	Email         *string                `protobuf:"bytes,4,opt,name=email,proto3,oneof" json:"email,omitempty"`
-	Phone         *string                `protobuf:"bytes,5,opt,name=phone,proto3,oneof" json:"phone,omitempty"`
+	Login         *string                `protobuf:"bytes,2,opt,name=login,proto3,oneof" json:"login,omitempty"`
+	FirstName     *string                `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty"`
+	LastName      *string                `protobuf:"bytes,4,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
+	Email         *string                `protobuf:"bytes,5,opt,name=email,proto3,oneof" json:"email,omitempty"`
+	Phone         *string                `protobuf:"bytes,6,opt,name=phone,proto3,oneof" json:"phone,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -181,6 +190,13 @@ func (x *GetUserRequest) GetId() int64 {
 	return 0
 }
 
+func (x *GetUserRequest) GetLogin() string {
+	if x != nil && x.Login != nil {
+		return *x.Login
+	}
+	return ""
+}
+
 func (x *GetUserRequest) GetFirstName() string {
 	if x != nil && x.FirstName != nil {
 		return *x.FirstName
@@ -212,10 +228,11 @@ func (x *GetUserRequest) GetPhone() string {
 type GetUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	FirstName     *string                `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty"`
-	LastName      *string                `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
-	Email         *string                `protobuf:"bytes,4,opt,name=email,proto3,oneof" json:"email,omitempty"`
-	Phone         *string                `protobuf:"bytes,5,opt,name=phone,proto3,oneof" json:"phone,omitempty"`
+	Login         string                 `protobuf:"bytes,2,opt,name=login,proto3" json:"login,omitempty"`
+	FirstName     string                 `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName      string                 `protobuf:"bytes,4,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	Email         string                 `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty"`
+	Phone         string                 `protobuf:"bytes,6,opt,name=phone,proto3" json:"phone,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -257,30 +274,37 @@ func (x *GetUserResponse) GetId() int64 {
 	return 0
 }
 
+func (x *GetUserResponse) GetLogin() string {
+	if x != nil {
+		return x.Login
+	}
+	return ""
+}
+
 func (x *GetUserResponse) GetFirstName() string {
-	if x != nil && x.FirstName != nil {
-		return *x.FirstName
+	if x != nil {
+		return x.FirstName
 	}
 	return ""
 }
 
 func (x *GetUserResponse) GetLastName() string {
-	if x != nil && x.LastName != nil {
-		return *x.LastName
+	if x != nil {
+		return x.LastName
 	}
 	return ""
 }
 
 func (x *GetUserResponse) GetEmail() string {
-	if x != nil && x.Email != nil {
-		return *x.Email
+	if x != nil {
+		return x.Email
 	}
 	return ""
 }
 
 func (x *GetUserResponse) GetPhone() string {
-	if x != nil && x.Phone != nil {
-		return *x.Phone
+	if x != nil {
+		return x.Phone
 	}
 	return ""
 }
@@ -289,40 +313,39 @@ var File_api_messenger_user_proto protoreflect.FileDescriptor
 
 const file_api_messenger_user_proto_rawDesc = "" +
 	"\n" +
-	"\x18api/messenger_user.proto\x12\x04user\"w\n" +
-	"\rCreateRequest\x12\x1d\n" +
+	"\x18api/messenger_user.proto\x12\x04user\"\x8d\x01\n" +
+	"\rCreateRequest\x12\x14\n" +
+	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1d\n" +
 	"\n" +
-	"first_name\x18\x01 \x01(\tR\tfirstName\x12\x1b\n" +
-	"\tlast_name\x18\x02 \x01(\tR\blastName\x12\x14\n" +
-	"\x05email\x18\x03 \x01(\tR\x05email\x12\x14\n" +
-	"\x05phone\x18\x04 \x01(\tR\x05phone\"*\n" +
+	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
+	"\tlast_name\x18\x03 \x01(\tR\blastName\x12\x14\n" +
+	"\x05email\x18\x04 \x01(\tR\x05email\x12\x14\n" +
+	"\x05phone\x18\x05 \x01(\tR\x05phone\"*\n" +
 	"\x0eCreateResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\tR\asuccess\"\xd9\x01\n" +
+	"\asuccess\x18\x01 \x01(\tR\asuccess\"\xfe\x01\n" +
 	"\x0eGetUserRequest\x12\x13\n" +
-	"\x02id\x18\x01 \x01(\x03H\x00R\x02id\x88\x01\x01\x12\"\n" +
+	"\x02id\x18\x01 \x01(\x03H\x00R\x02id\x88\x01\x01\x12\x19\n" +
+	"\x05login\x18\x02 \x01(\tH\x01R\x05login\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"first_name\x18\x02 \x01(\tH\x01R\tfirstName\x88\x01\x01\x12 \n" +
-	"\tlast_name\x18\x03 \x01(\tH\x02R\blastName\x88\x01\x01\x12\x19\n" +
-	"\x05email\x18\x04 \x01(\tH\x03R\x05email\x88\x01\x01\x12\x19\n" +
-	"\x05phone\x18\x05 \x01(\tH\x04R\x05phone\x88\x01\x01B\x05\n" +
-	"\x03_idB\r\n" +
+	"first_name\x18\x03 \x01(\tH\x02R\tfirstName\x88\x01\x01\x12 \n" +
+	"\tlast_name\x18\x04 \x01(\tH\x03R\blastName\x88\x01\x01\x12\x19\n" +
+	"\x05email\x18\x05 \x01(\tH\x04R\x05email\x88\x01\x01\x12\x19\n" +
+	"\x05phone\x18\x06 \x01(\tH\x05R\x05phone\x88\x01\x01B\x05\n" +
+	"\x03_idB\b\n" +
+	"\x06_loginB\r\n" +
 	"\v_first_nameB\f\n" +
 	"\n" +
 	"_last_nameB\b\n" +
 	"\x06_emailB\b\n" +
-	"\x06_phone\"\xce\x01\n" +
+	"\x06_phone\"\x9f\x01\n" +
 	"\x0fGetUserResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\"\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
+	"\x05login\x18\x02 \x01(\tR\x05login\x12\x1d\n" +
 	"\n" +
-	"first_name\x18\x02 \x01(\tH\x00R\tfirstName\x88\x01\x01\x12 \n" +
-	"\tlast_name\x18\x03 \x01(\tH\x01R\blastName\x88\x01\x01\x12\x19\n" +
-	"\x05email\x18\x04 \x01(\tH\x02R\x05email\x88\x01\x01\x12\x19\n" +
-	"\x05phone\x18\x05 \x01(\tH\x03R\x05phone\x88\x01\x01B\r\n" +
-	"\v_first_nameB\f\n" +
-	"\n" +
-	"_last_nameB\b\n" +
-	"\x06_emailB\b\n" +
-	"\x06_phone2~\n" +
+	"first_name\x18\x03 \x01(\tR\tfirstName\x12\x1b\n" +
+	"\tlast_name\x18\x04 \x01(\tR\blastName\x12\x14\n" +
+	"\x05email\x18\x05 \x01(\tR\x05email\x12\x14\n" +
+	"\x05phone\x18\x06 \x01(\tR\x05phone2~\n" +
 	"\vUserService\x127\n" +
 	"\n" +
 	"CreateUser\x12\x13.user.CreateRequest\x1a\x14.user.CreateResponse\x126\n" +
@@ -365,7 +388,6 @@ func file_api_messenger_user_proto_init() {
 		return
 	}
 	file_api_messenger_user_proto_msgTypes[2].OneofWrappers = []any{}
-	file_api_messenger_user_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
